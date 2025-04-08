@@ -27,11 +27,13 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t jcoronelg/docker-graphql:0.0.2 .
+        docker build -t ${{secrets.DOCKER_USER}}/${{secrets.DOCKER_REPOSITORY}}:0.0.3 .
+        docker build -t ${{secrets.DOCKER_USER}}/${{secrets.DOCKER_REPOSITORY}}:latest .
 
     - name: Push Docker Image
       run: |
-        docker push jcoronelg/docker-graphql:0.0.2
+        docker push ${{secrets.DOCKER_USER}}/${{secrets.DOCKER_REPOSITORY}}:0.0.3
+        docker push ${{secrets.DOCKER_USER}}/${{secrets.DOCKER_REPOSITORY}}:latest
 
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
